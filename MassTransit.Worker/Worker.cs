@@ -20,19 +20,13 @@ namespace MassTransit.Worker
 
         private async Task CreateArtWork()
         {
-            var endpoint = await bus.GetSendEndpoint(new Uri("queue:create-art-work"));
+            var blueQuran = new BidSubmitted
+            (
+                Id: Guid.NewGuid(),
+                Bid: 20_00
+            );
 
-            var blueQuran = new CreateArtWork
-                  (
-                    Name: "Folio from the Blue Qur'an",
-                    Image: new Uri("https://images.metmuseum.org/CRDImages/is/original/DP167100.jpg"),
-                    ArtistName: String.Empty,
-                    LocationOrigin: "Made in Tunisia, possibly Qairawan"
-                  );
-
-            //You send to queue
-            //but if you're sending to a topic that is subscribed to multiple consumers you publish
-            await endpoint.Send(blueQuran);
+            await bus.Publish<BidSubmitted>(blueQuran);
         }
     }
 }
