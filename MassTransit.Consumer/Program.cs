@@ -32,7 +32,7 @@ builder.Services.AddMassTransit(x =>
     x.AddSagaStateMachine<ArtAcquisitionStateMachine, ArtAcquisition>()
     .AzureTableRepository(r =>
     {
-        serviceClient.CreateTableAsync("ArtAcquisition");
+        serviceClient.CreateTableIfNotExists("ArtAcquisition");
 
         r.ConnectionFactory(() => serviceClient.GetTableClient("ArtAcquisition"));
     });

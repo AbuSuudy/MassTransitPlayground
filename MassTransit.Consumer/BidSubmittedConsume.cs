@@ -14,11 +14,23 @@ namespace MassTransit.Consumer
 
             Console.WriteLine(jsonString);
 
-            await context.Publish<BidAccepted>(new
+            if(context.Message.Bid >= context.Message.Price * 0.8m)
             {
-                Id = context.Message.Id,
-                bid = context.Message.Bid
-            });
+                await context.Publish<BidAccepted>(new
+                {
+                    Id = context.Message.Id,
+                    bid = context.Message.Bid
+                });
+            }
+            else
+            {
+                await context.Publish<BidRejected>(new
+                {
+                    Id = context.Message.Id,
+                });
+            }
+
+
         }
     }
 }
