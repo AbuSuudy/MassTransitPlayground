@@ -3,16 +3,19 @@ using System.Text.Json;
 
 namespace MassTransit.Consumer
 {
-    internal class CreateArtWorkConsumer : IConsumer<CreateArtWork>
+    internal class BidAcceptedConsume : IConsumer<BidAccepted>
     {
-        public Task Consume(ConsumeContext<CreateArtWork> context)
+        public  Task Consume(ConsumeContext<BidAccepted> context)
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(context.Message, options);
 
-            Console.WriteLine(jsonString);
+            Console.WriteLine("BidAccepted Consumed");
 
+            Console.WriteLine(jsonString);
+      
             return Task.CompletedTask;
+
         }
     }
 }

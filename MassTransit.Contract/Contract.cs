@@ -1,17 +1,21 @@
 ﻿namespace MassTransit.Contract
 {
-    public record CreateArtWork(string Name, Uri Image, string ArtistName, string LocationOrigin);
 
-    public record BidSubmitted(Guid Id, decimal Bid);
 
-    public record BidAccepted(Guid Id, decimal Bid);
+    public record BidSubmitted {
 
-    public record BidRejected(Guid Id, decimal Bid);
+        public Guid Id { get; init; }
 
-    public record CounterOffer(Guid Id, decimal bid, decimal Offer);
+        public decimal Bid { get; init; }
+    }
 
-    public record CounterOfferAccepted(Guid Id, decimal Offer);
 
-    public record CounterOfferRejected(Guid Id, decimal Offer);
+    public record BidAccepted
+    {
+        public Guid Id { get; init; }
+
+        public decimal Bid { get; init; }
+    }
+
 
 }

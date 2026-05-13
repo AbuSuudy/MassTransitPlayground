@@ -2,6 +2,7 @@
 using Azure.Identity;
 using MassTransit;
 using MassTransit.Consumer;
+using MassTransit.Contract;
 using Microsoft.Extensions.Hosting;
 
 
@@ -12,18 +13,9 @@ builder.Services.AddMassTransit(x =>
 {
     x.SetKebabCaseEndpointNameFormatter();
 
-    x.AddConsumer<CreateArtWorkConsumer>();
+    x.AddConsumer<BidSubmittedConsume>();
 
-    TableServiceClient serviceClient = new(
-        endpoint: new Uri("https://stmasstransit.table.core.windows.net/"),
-        new DefaultAzureCredential()
-    );
-
-    x.AddSagaStateMachine<ArtAcquisitionStateMachine, ArtAcquisition>()
-        .AzureTableRepository(r =>
-        {
-            r.ConnectionFactory(() => serviceClient.GetTableClient("ArtAcquisition"));
-        });
+    x.AddConsumer<BidAcceptedConsume>();
 
     x.UsingAzureServiceBus((context, cfg) =>
     {
@@ -31,6 +23,21 @@ builder.Services.AddMassTransit(x =>
 
         cfg.ConfigureEndpoints(context);
     });
+
+    TableServiceClient serviceClient = new(
+        endpoint: new Uri("https://stmasstransit.table.core.windows.net/"),
+        new DefaultAzureCredential()
+    );
+
+    x.AddSagaStateMachine<ArtAcquisitionStateMachine, ArtAcquisition>()
+    .AzureTableRepository(r =>
+    {
+        serviceClient.CreateTableAsync("ArtAcquisition");
+
+        r.ConnectionFactory(() => serviceClient.GetTableClient("ArtAcquisition"));
+    });
+
+
 });
 
 var host = builder.Build();

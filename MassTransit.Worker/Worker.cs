@@ -12,19 +12,19 @@ namespace MassTransit.Worker
                     logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 }
 
-                await CreateArtWork();
+                await CreateBid();
 
                 await Task.Delay(10_000, stoppingToken);
             }
         }
 
-        private async Task CreateArtWork()
+        private async Task CreateBid()
         {
             var blueQuran = new BidSubmitted
-            (
-                Id: Guid.NewGuid(),
-                Bid: 20_00
-            );
+            {
+                Id = Guid.NewGuid(),
+                Bid = 20_00
+            };
 
             await bus.Publish<BidSubmitted>(blueQuran);
         }
