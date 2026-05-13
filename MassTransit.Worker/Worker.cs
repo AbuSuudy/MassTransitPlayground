@@ -23,7 +23,8 @@ namespace MassTransit.Worker
             var blueQuran = new BidSubmitted
             {
                 Id = Guid.NewGuid(),
-                Bid = 20_00
+                Bid = 80_000,
+                Price = 100_000
             };
 
             await bus.Publish<BidSubmitted>(blueQuran);

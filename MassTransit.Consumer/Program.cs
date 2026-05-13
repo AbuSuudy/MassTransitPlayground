@@ -2,7 +2,6 @@
 using Azure.Identity;
 using MassTransit;
 using MassTransit.Consumer;
-using MassTransit.Contract;
 using Microsoft.Extensions.Hosting;
 
 
@@ -13,9 +12,9 @@ builder.Services.AddMassTransit(x =>
 {
     x.SetKebabCaseEndpointNameFormatter();
 
-    x.AddConsumer<BidSubmittedConsume>();
+    x.AddConsumer<BidSubmittedConsumer>();
 
-    x.AddConsumer<BidAcceptedConsume>();
+    x.AddConsumer<BidAcceptedConsumer>();
 
     x.UsingAzureServiceBus((context, cfg) =>
     {

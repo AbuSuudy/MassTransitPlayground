@@ -3,17 +3,17 @@ using System.Text.Json;
 
 namespace MassTransit.Consumer
 {
-    internal class BidRejectedConsume : IConsumer<BidRejected>
+    internal class BidAcceptedConsumer : IConsumer<BidAccepted>
     {
-        public  Task Consume(ConsumeContext<BidRejected> context)
+        public Task Consume(ConsumeContext<BidAccepted> context)
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(context.Message, options);
 
-            Console.WriteLine("BidRejected Consumed");
+            Console.WriteLine("BidAccepted Consumed");
 
             Console.WriteLine(jsonString);
-      
+
             return Task.CompletedTask;
 
         }

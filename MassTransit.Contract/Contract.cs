@@ -2,7 +2,8 @@
 {
 
 
-    public record BidSubmitted {
+    public record BidSubmitted
+    {
 
         public Guid Id { get; init; }
 

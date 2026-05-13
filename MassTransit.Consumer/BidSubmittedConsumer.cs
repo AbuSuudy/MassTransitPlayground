@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace MassTransit.Consumer
 {
-    internal class BidSubmittedConsume : IConsumer<BidSubmitted>
+    internal class BidSubmittedConsumer : IConsumer<BidSubmitted>
     {
         public async Task Consume(ConsumeContext<BidSubmitted> context)
         {
@@ -14,7 +14,8 @@ namespace MassTransit.Consumer
 
             Console.WriteLine(jsonString);
 
-            if(context.Message.Bid >= context.Message.Price * 0.8m)
+            //Accept bid greater than 80% of the price
+            if (context.Message.Bid >= context.Message.Price * 0.8m)
             {
                 await context.Publish<BidAccepted>(new
                 {

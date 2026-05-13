@@ -39,7 +39,7 @@ namespace MassTransit.Consumer
              );
 
             During(Submitted,
-                When(BidAccepted) 
+                When(BidAccepted)
                 .TransitionTo(Acquired)
                 .Finalize()
             );
