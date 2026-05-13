@@ -20,10 +20,13 @@ namespace MassTransit.Worker
 
         private async Task CreateBid()
         {
+
+            Random rnd = new Random();
+
             var blueQuran = new BidSubmitted
             {
                 Id = Guid.NewGuid(),
-                Bid = 80_000,
+                Bid = rnd.Next(50_000, 100_000),
                 Price = 100_000
             };
 

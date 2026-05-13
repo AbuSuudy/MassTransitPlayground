@@ -10,7 +10,7 @@ namespace MassTransit.Consumer
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(context.Message, options);
 
-            Console.WriteLine("BidRejected Consumed");
+            Console.WriteLine("Bid Rejected Consumed");
 
             Console.WriteLine(jsonString);
 

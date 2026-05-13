@@ -16,6 +16,8 @@ builder.Services.AddMassTransit(x =>
 
     x.AddConsumer<BidAcceptedConsumer>();
 
+    x.AddConsumer<BidRejectedConsumer>();
+
     x.UsingAzureServiceBus((context, cfg) =>
     {
         cfg.Host(new Uri("sb://sb-masstransit-neu-001.servicebus.windows.net"));
