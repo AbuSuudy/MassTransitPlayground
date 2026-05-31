@@ -1,4 +1,6 @@
-﻿namespace MassTransit.Contract
+﻿using MassTransit;
+
+namespace MassTransit.Contract
 {
     public record BidSubmitted
     {
@@ -9,14 +11,14 @@
         public decimal Price { get; init; }
     }
 
-    public record BidAccepted
+    public interface BidAccepted : CorrelatedBy<Guid>
     {
         public Guid Id { get; init; }
 
         public decimal Bid { get; init; }
     }
 
-    public record BidRejected
+    public interface BidRejected : CorrelatedBy<Guid>
     {
         public Guid Id { get; init; }
     }

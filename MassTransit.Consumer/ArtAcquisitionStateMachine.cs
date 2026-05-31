@@ -2,7 +2,7 @@
 
 namespace MassTransit.Consumer
 {
-    public class ArtAcquisition : SagaStateMachineInstance
+    public interface ArtAcquisition : SagaStateMachineInstance, CorrelatedBy<Guid>
     {
         public Guid CorrelationId { get; set; }
         public string CurrentState { get; set; }
@@ -25,8 +25,8 @@ namespace MassTransit.Consumer
             InstanceState(x => x.CurrentState);
 
             Event(() => BidSubmitted, x => x.CorrelateById(m => m.Message.Id));
-            Event(() => BidAccepted, x => x.CorrelateById(m => m.Message.Id));
-            Event(() => BidRejected, x => x.CorrelateById(m => m.Message.Id));
+            Event(() => BidAccepted);
+            Event(() => BidRejected);
 
             Initially(
                 When(BidSubmitted)

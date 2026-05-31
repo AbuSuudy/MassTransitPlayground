@@ -7,6 +7,10 @@ using Microsoft.Extensions.Hosting;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
 
+var serviceClient = new TableServiceClient(
+    new Uri("https://stmasstransit001.table.core.windows.net"),
+    new DefaultAzureCredential()
+);
 
 builder.Services.AddMassTransit(x =>
 {
@@ -20,15 +24,11 @@ builder.Services.AddMassTransit(x =>
 
     x.UsingAzureServiceBus((context, cfg) =>
     {
-        cfg.Host(new Uri("sb://sb-masstransit-neu-001.servicebus.windows.net"));
+        cfg.Host(new Uri("sb://sb-masstransit-neu-002.servicebus.windows.net"));
 
         cfg.ConfigureEndpoints(context);
     });
 
-    TableServiceClient serviceClient = new(
-        endpoint: new Uri("https://stmasstransit.table.core.windows.net/"),
-        new DefaultAzureCredential()
-    );
 
     x.AddSagaStateMachine<ArtAcquisitionStateMachine, ArtAcquisition>()
     .AzureTableRepository(r =>
@@ -37,9 +37,8 @@ builder.Services.AddMassTransit(x =>
 
         r.ConnectionFactory(() => serviceClient.GetTableClient("ArtAcquisition"));
     });
-
-
 });
+
 
 var host = builder.Build();
 
