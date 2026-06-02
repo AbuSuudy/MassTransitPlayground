@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace MassTransit.RoutingSlip
+﻿namespace MassTransit.RoutingSlip
 {
     public class BidRejectedArguments
     {

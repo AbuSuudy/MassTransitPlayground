@@ -19,7 +19,7 @@ namespace MassTransit.RoutingSlip
                     Price = context.Message.Price
                 });
 
-                builder.AddActivity("Aquired", new Uri("queue:aquired_execute") , new
+                builder.AddActivity("Aquired", new Uri("queue:aquired_execute"), new
                 {
                     Id = context.Message.Id,
                     bid = context.Message.Bid,

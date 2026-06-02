@@ -23,7 +23,7 @@
     {
         public async Task<CompensationResult> Compensate(CompensateContext<BidAcceptedLog> context)
         {
-             Console.WriteLine("Bid Accepted Compensared");
+            Console.WriteLine("Bid Accepted Compensared");
 
             return context.Compensated();
         }
