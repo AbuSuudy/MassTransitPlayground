@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36930.0 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11822.322 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransit.Worker", "MassTransit.Worker\MassTransit.Worker.csproj", "{0AAACDF6-490A-4959-972B-9ACC6A092973}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransit.Contract", "MassTransit.Contract\MassTransit.Contract.csproj", "{F92FEC54-738E-4D9B-8E9F-DCA4A1BDB1D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransit.Consumer", "MassTransit.Consumer\MassTransit.Consumer.csproj", "{7873CDBD-BEB4-4AB0-A467-EFE71744EBE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransit.RoutingSlip", "MassTransit.RoutingSlip\MassTransit.RoutingSlip.csproj", "{7DE55859-BC71-4787-A015-9D4D433D37A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{7873CDBD-BEB4-4AB0-A467-EFE71744EBE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7873CDBD-BEB4-4AB0-A467-EFE71744EBE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7873CDBD-BEB4-4AB0-A467-EFE71744EBE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE55859-BC71-4787-A015-9D4D433D37A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE55859-BC71-4787-A015-9D4D433D37A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE55859-BC71-4787-A015-9D4D433D37A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE55859-BC71-4787-A015-9D4D433D37A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

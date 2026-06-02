@@ -1,6 +1,4 @@
-﻿using MassTransit;
-
-namespace MassTransit.Contract
+﻿namespace MassTransit.Contract
 {
     public record BidSubmitted
     {
